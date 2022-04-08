@@ -1,0 +1,44 @@
+
+JDBC steps:
+
+1) import package. (like java.sql.*)
+2) 		a) Load the driver (MySQL, Oracle, PostgreSQL all have different drivers) // like for example com.mysql.jdbc.Driver 
+    and	b) Register the driver // forName("com.mysql.jdbc.Driver")
+3) Establish the connection
+4) create the statement
+	i) statement 	// to execute simple query
+	ii) prepared statement	// to execute predefined query
+	iii) callable statement // for PL(Procedural Languages) in SQL
+5) Execute the query
+6) Process result
+7) close
+
+
+#coding_format:
+
+Table :
+								=======================
+								| Roll No. |   Name   |
+initial pointer of rs---------->=======================
+					rs.next()-->|	 1	   |  Navin	  |
+								|	 2	   |   Raj	  |
+								|	 3	   |  Monali  |
+								=======================	
+
+1)import java.sql.*;
+	p s v m(S []a){
+2)		Class.forName("com.mysql.jdbc.Driver");
+		/*
+		Connection conn;	// getConnection() is a predefined method which provides Connection's object(conn).
+			getConnection has 3 parameters :
+			getConnection("url", "username", "pwd");
+		*/
+3)		Connection conn = DriverManager.getConnection("url", "username", "pwd");
+4)		Statement st = conn.createStatement();
+5)		ResultSet rs = st.executeQuery("SELECT * FROM Student");
+6)		while(rs.next()){
+			S.o.p(rs.getInt() + " " + rs.getString());
+		}
+7)		st.close();
+		conn.close();
+	}
